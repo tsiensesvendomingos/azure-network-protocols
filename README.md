@@ -22,7 +22,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <h2>Actions and Observations</h2>
 
 <p>
-First you will need to create to VMs on Azure. One machine will be a Linux machine and the other will be a Windows 10 machine. Both will have two CPUs and they must be on the same VNET. Once that's done go on the Windows machine and download Wireshark. Here's a link to download Wireshark: https://www.wireshark.org/download.html and once that is done open Wireshark and filter for ICMP Traffic only. ICMP is a network layer protocol that relays messages concerning network connection issues. Ping uses this protocol. Ping tests connectivity between hosts. When we filter Wireshark to only capture ICMP packets and ping the private IP address of our Linux machine we can visually see the packets on Wireshark. 
+First you will need to create two VMs on Azure. One machine will be a Linux machine, and the other will be a Windows 10 machine. Both will have two CPUs and must be on the same VNET. Once that's done, go to the Windows machine and download Wireshark. Once installed, open Wireshark and filter for ICMP Traffic only. ICMP is a network layer protocol that relays messages concerning network connection issues. Ping uses this protocol. Ping tests connectivity between hosts. When we filter Wireshark only to capture ICMP packets and ping our Linux machine's private IP address, we can see the packets on Wireshark. 
 </p>
 <p>
 <img src="https://i.imgur.com/iFYdOiV.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -30,7 +30,7 @@ First you will need to create to VMs on Azure. One machine will be a Linux machi
 <br />
 
 <p>
-We can inspect each individual packet and see the actual data that is being sent in each ping. The picture below demonstrates that. 
+We can inspect each packet and see the actual data being sent in each ping. The picture below demonstrates that. 
 </p>
 <p>
 <img src="https://i.imgur.com/tIG5VAl.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -38,7 +38,7 @@ We can inspect each individual packet and see the actual data that is being sent
 <br />
 
 <p>
-Next we will perpetually ping the Linux machine with the command ping -t. This will continually ping the machine until we decide to stop it, while the Windows machine is pinging the Linux machine we will go to the Linux machine and block inbound ICMP traffic on its firewall. Once we do that we will stop receiving echo replies from the Linux machine. We will block ICMP by creating a new Network Security Group on the Linux machine that will be set to block ICMP. We can allow traffic by allowing ICMP on the Linux Network Security Groups page on Azure. 
+Next, we will perpetually ping the Linux machine with the command ping -t. This will continually ping the machine until we decide to stop it. While the Windows machine is pinging the Linux machine, we will go to the Linux machine and block inbound ICMP traffic on its firewall. Once we do that, we will stop receiving echo replies from the Linux machine. We will block ICMP by creating a new Network Security Group on the Linux machine that will be set to block ICMP. We can allow traffic by allowing ICMP on Azure's Linux Network Security Groups page. 
 </p>
 <p>
 <img src="https://i.imgur.com/aTG3sxe.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
